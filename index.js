@@ -72,7 +72,7 @@ app.post('/api/products', async (req, res)=>{
     }
 });
 
-mongoose.connect("mongodb+srv://bryanab:3tqvf79hIN8MnC9C@backeddb.azhci36.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackedDB")
+mongoose.connect("mongodb+srv://bryanab:<PASSWORD>@backeddb.azhci36.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackedDB")
 .then(()=>{
     console.log("Connected to Database");
     app.listen(3000,() =>{
