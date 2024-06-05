@@ -35,15 +35,27 @@ app.get('/api/product/:id', async (req, res) => {
 app.put('/api/product/:id', async (req, res) => {
     try{
         const { id } = req.params;
-
         const products = await Product.findByIdAndUpdate(id, req.body);
-        
         if(!products){
             return res.status(404).json({message: "product not found"});
         }
-        
         const updatedProduct = await Product.findById(id)
         res.status(200).json(updatedProduct);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+});
+
+//delete a product
+app.delete('/api/product/:id', async (req, res) => {
+    try{
+        const { id } = req.params;
+        const product = await Product.findByIdAndDelete(id, req.body);
+        if(!product){
+            return res.status(404).json({message: "product not found"});
+        }
+        res.status(200).json({message: "Product Deleted Succesfully"});
     }
     catch(error){
         res.status(500).json({message: error.message});
